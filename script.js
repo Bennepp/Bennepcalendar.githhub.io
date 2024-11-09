@@ -86,6 +86,25 @@ function renderCalendar(date) {
     }
 }
 
+const darkModeToggle = document.getElementById('dark-mode-toggle'); // its does what u think
+
+darkModeToggle.addEventListener('change', () => {
+    document.body.classList.toggle('dark-mode');
+    document.querySelector('.calendar').classList.toggle('dark-mode');
+    document.querySelector('.calendar-header').classList.toggle('dark-mode');
+    document.querySelectorAll('.PNButton').forEach(button => {
+        button.classList.toggle('dark-mode');
+    });
+    document.querySelectorAll('.date').forEach(date => {
+        date.classList.toggle('dark-mode');
+    });
+    document.querySelectorAll('.event-content').forEach(event => {
+        event.classList.toggle('dark-mode');
+    });
+    document.querySelector('.tooltip').classList.toggle('dark-mode');
+});
+
+
 // calls month change (when button pressed)
 function changeMonth(offset) {
     currentDate.setMonth(currentDate.getMonth() + offset);

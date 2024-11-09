@@ -7,14 +7,22 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="toggle-container">
+        <label class="switch">
+            <input type="checkbox" id="dark-mode-toggle">
+            <span class="slider"></span>
+        </label>
+        <span class="toggle-text">Toggle Dark Mode</span>
+    </div>
+    
 
 <div class="calendar">
-    <div class="calendar-header">
-        <button onclick="changeMonth(-1)" class="PNButton">Previous</button>
+    <header class="calendar-header">
+        <button onclick="changeMonth(-1)" class="PNButton" aria-label="Previous Month">Previous</button>
         <h2 id="month-year"></h2>
-        <button onclick="changeMonth(1)" class="PNButton">Next</button>
-    </div>
-    <div class="calendar-grid">
+        <button onclick="changeMonth(1)" class="PNButton" aria-label="Next Month">Next</button>
+    </header>
+    <main class="calendar-grid">
         <div class="day">Sun</div>
         <div class="day">Mon</div>
         <div class="day">Tue</div>
@@ -23,28 +31,31 @@
         <div class="day">Fri</div>
         <div class="day">Sat</div>
         <!-- Dates calculated by JS script -->
-    </div>
+    </main>
     <footer>
-        <p>Interactive calendar with events, made by Bennep for proposal, enjoy. Send a pull request if you see anything wrong, I'll be surprised if there's not</p>
-        <img src="https://thumbs.dreamstime.com/b/big-smile-emoticon-26256350.jpg" width="150">
+        <p>Interactive calendar with events, made by Bennep for proposal, enjoy. Send a pull request if you see anything wrong, I'll be surprised if there's not.</p>
+        <img src="https://thumbs.dreamstime.com/b/big-smile-emoticon-26256350.jpg" width="150" alt="Smiley face" />
         <h1>HOW TO USE:</h1>
-        <p>In the script.js file, you will see the events variable (at the top) it is formatted into years, months, and days. If you want to add an event called "BOD meeting" on the 9th November for example, you would do:</p>
+        <p>In the script.js file, you will see the events variable (at the top). It is formatted into years, months, and days. If you want to add an event called "BOD meeting" on the 9th November, for example, you would do:</p>
         
         <pre><code>
 2024: { // Year 2024
-    10: { // November (Month 8) (months start at month 0, I can't be bothered to change, sorry) (jan is month 0)
+    10: { // November (Month 10) (months start at month 0)
         9: "BOD meeting", // 9th day of the month
         5: "Meeting with Bob",
     },
 }, // Close the loop
         </code></pre>
 
-        <p>What this does is creates events in 2024, in November, and on the days 9 and 5. i have provided examples in the script with comments to help you out if you want to test it out. Also, i havent tested this on mobile, im not sure if if works</p>
-        <p>I'm sorry for anyone thats actually going to go through my code, it's very messy </p>
+        <p>This creates events in 2024, in November, on the days 9 and 5. Examples in the script include comments to help you out if you want to test it. Note: I haven't tested this on mobile, so I'm not sure if it works.</p>
+        <p>Sorry for anyone actually going through my code; it's very messy.</p>
 
-        <h1>Additional notes for anyone viewing this:</h1>
-        <p>I'm going to be broard on this as i don't wanna dox myself, but the purpose of this project was to honestly test if i was capable, but also because i saw on a schools website, their "virtual office" sectrion was empty, saying you will find "the calendar", despite there being nothing there. i decided to make this to see if i can integrate it into the website myself (something that i will probably never get round to tbf). this is quite half arsed (took about 3-4h total)</p>
-        <p>ps. please nobody ddos the site lmao</p>
+        <h1>Additional Notes:</h1>
+        <p>I'm going to be broad on this as I don't want to dox myself, but the purpose of this project was to test my capabilities. I saw a school's website with an empty "virtual office" section saying you will find "the calendar." I decided to make this to see if I can integrate it myself (something that I will probably never get around to). This took about 3-4 hours total.</p>
+        <p>PS. Please nobody DDOS the site. 😅</p>
+        <hr>
+        <h4>Devlogs:</h4>
+        <p>09/11/24 17:25 - Added darkmode (cheers gpt for the darkmode values lol saved me like 2 hours)</p>
         <h6>Bennep 09/11/2024</h6>
     </footer>
 </div>
