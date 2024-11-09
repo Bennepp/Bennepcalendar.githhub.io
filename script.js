@@ -7,7 +7,7 @@ let currentDate = new Date();
 let events = {
     2024: { // Events for 2024
         10: { // November (Month 10)
-            9: "New Year's Day",
+            9: "BOD Meeting",
             5: "Meeting with Bob",
         },
         2: { // March (Month 2)
@@ -32,7 +32,6 @@ let events = {
 };
 
 function renderCalendar(date) {
-    // Clear existing dates
     calendarGrid.innerHTML = 
         `<div class="day">Sun</div>
         <div class="day">Mon</div>
@@ -51,7 +50,6 @@ function renderCalendar(date) {
     const daysInMonth = new Date(year, month + 1, 0).getDate();
     const daysInPrevMonth = new Date(year, month, 0).getDate();
 
-    // Add empty cells for days of the previous month
     for (let i = firstDayOfMonth; i > 0; i--) {
         const emptyDate = document.createElement('div');
         emptyDate.classList.add('date', 'empty');
@@ -59,12 +57,11 @@ function renderCalendar(date) {
         calendarGrid.appendChild(emptyDate);
     }
 
-    // Add cells for each day of the current month
+
     for (let i = 1; i <= daysInMonth; i++) {
         const dateElement = document.createElement('div');
         dateElement.classList.add('date');
 
-        // Check if there's an event for this date in the current year and month
         const eventText = events[year] && events[year][month] && events[year][month][i] 
                           ? events[year][month][i] 
                           : "";
@@ -77,7 +74,7 @@ function renderCalendar(date) {
         calendarGrid.appendChild(dateElement);
     }
 
-    // Fill the rest of the row with days from the next month
+    // incase days overflow and go onto next month (grayed out dates)
     const totalCells = firstDayOfMonth + daysInMonth;
     const extraCells = (7 - (totalCells % 7)) % 7;
 
@@ -89,7 +86,7 @@ function renderCalendar(date) {
     }
 }
 
-// Function to change the month (previous or next)
+// calls month change (when button pressed)
 function changeMonth(offset) {
     currentDate.setMonth(currentDate.getMonth() + offset);
     renderCalendar(currentDate);
