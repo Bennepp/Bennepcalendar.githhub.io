@@ -3,32 +3,30 @@ const monthYearDisplay = document.getElementById('month-year');
 
 let currentDate = new Date();
 
-
 let events = {
-    2024: { // Events for 2024
-        10: { // November (Month 10)
-            9: "BOD Meeting",
+    2024: { // Year 2024
+        10: { // Nov (month 10) (sorry its like this LOL)
+            9: "BOD Meeting", // Day 9
             5: "Meeting with Bob",
         },
-        2: { // March (Month 2)
+        2: {
             10: "Doctor Appointment",
             15: "Team Event",
         },
-        4: { // May (Month 4)
+        4: {
             20: "Conference",
             25: "Birthday Party",
         },
     },
-    2025: { // Events for 2025
-        1: { // February (Month 1)
+    2025: {
+        1: {
             14: "Valentine's Day Celebration",
             20: "Project Deadline",
         },
-        8: { // September (Month 8)
+        8: {
             5: "Labor Day Weekend",
         },
     },
-    // Add more years, months, and events as needed
 };
 
 function renderCalendar(date) {
@@ -57,7 +55,6 @@ function renderCalendar(date) {
         calendarGrid.appendChild(emptyDate);
     }
 
-
     for (let i = 1; i <= daysInMonth; i++) {
         const dateElement = document.createElement('div');
         dateElement.classList.add('date');
@@ -74,7 +71,6 @@ function renderCalendar(date) {
         calendarGrid.appendChild(dateElement);
     }
 
-    // incase days overflow and go onto next month (grayed out dates)
     const totalCells = firstDayOfMonth + daysInMonth;
     const extraCells = (7 - (totalCells % 7)) % 7;
 
@@ -84,9 +80,15 @@ function renderCalendar(date) {
         emptyDate.innerHTML = `<span class="date-number">${i}</span><div class="event-content"></div>`;
         calendarGrid.appendChild(emptyDate);
     }
+
+    // checks if DarkMode is true, when rendering next month if it is, it keeps the styling instead of reverting to light mode and looking strange lol
+    if (document.body.classList.contains('dark-mode')) {
+        document.querySelectorAll('.date').forEach(date => date.classList.add('dark-mode'));
+        document.querySelectorAll('.event-content').forEach(event => event.classList.add('dark-mode'));
+    }
 }
 
-const darkModeToggle = document.getElementById('dark-mode-toggle'); // its does what u think
+const darkModeToggle = document.getElementById('dark-mode-toggle');
 
 darkModeToggle.addEventListener('change', () => {
     document.body.classList.toggle('dark-mode');
@@ -104,8 +106,6 @@ darkModeToggle.addEventListener('change', () => {
     document.querySelector('.tooltip').classList.toggle('dark-mode');
 });
 
-
-// calls month change (when button pressed)
 function changeMonth(offset) {
     currentDate.setMonth(currentDate.getMonth() + offset);
     renderCalendar(currentDate);
